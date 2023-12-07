@@ -1,40 +1,54 @@
-# vue-tailwind-lightbox
+<div align="center">
 
-This template should help get you started developing with Vue 3 in Vite.
+![ezgif-2-e81342282f](https://github.com/cn-2k/vue-tailwind-lightbox/assets/59366705/f6b3f948-2d8a-4886-bb8d-b8b6c786bab0)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+</div>
 
-## Type Support for `.vue` Imports in TS
+<h1 align=center>Vue Tailwind Lightbox ✨</h1>
+<p align=center>A Gallery/Lightbox component styled with TailwindCSS for Vue 3 (Typescript included!).</p>
+<p align=center>Based on <a href="https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6" target="_blank">Frontend Mentor E-commerce product page</a> Lightbox.</p>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## 🚀 Installation
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Install using your package manager of choice:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm i vue-tailwind-lightbox
 ```
 
-### Compile and Hot-Reload for Development
+## 📺 Demo
 
-```sh
-npm run dev
+https://vue-tailwind-lightbox-demo.vercel.app/
+
+## ⚙️ Usage
+
+Import the component locally or define it globally and include the css file:
+
+```vue
+<template>
+  <vue-tailwind-lightbox :image-list="imageList" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import { VueTailwindLightbox } from 'vue-tailwind-lightbox'
+import "vue-tailwind-lightbox/dist/style.css"; // Import CSS needed!
+
+import image1 from '@/assets/images/image-product-1.jpg'
+import image2 from '@/assets/images/image-product-2.jpg'
+import image3 from '@/assets/images/image-product-3.jpg'
+import image4 from '@/assets/images/image-product-4.jpg'
+
+const imageList = ref([image1, image2, image3, image4])
+</script>
+
 ```
 
-### Type-Check, Compile and Minify for Production
+<strong>Note:</strong> don't worry about the thumbnails images, they are automatically compressed to improve and maintain performance! 😉
 
-```sh
-npm run build
-```
+## 📃 Props
+
+| Name       | Type               | Default | Description                        |
+| ---------- | ------------------ | ------- | ---------------------------------- |
+| `image-list` | `Array`          |   ---   | Array of images to fill the gallery |
