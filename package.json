@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "description": "A simple TailwindCSS Lightbox, written in Vue.js 3.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cn-2k/vue-tailwind-lightbox.git"
+  },
   "keywords": [
     "vue3",
     "lightbox",
