@@ -74,7 +74,7 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .main-container {
-  @apply select-none w-[500px];
+  @apply select-none max-w-[500px] p-4;
 }
 
 .content-container {

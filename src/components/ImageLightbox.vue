@@ -163,22 +163,25 @@ onUnmounted(() => {
 .place-content-between {
   place-content: space-between;
 }
-.thumb-subcontainer {
-  @apply mt-4 flex place-content-center gap-6;
-}
+
 .thumb-container {
-  @apply flex w-[650px] justify-center gap-4;
+  @apply flex w-full justify-center items-center gap-4;
 }
+
+.thumb-subcontainer {
+  @apply w-[500px] flex place-content-center gap-6;
+}
+
 .close-button {
- @apply absolute -top-14 right-0 cursor-pointer fill-zinc-800 transition-colors hover:fill-orange-500;
+ @apply absolute -top-14 right-0 cursor-pointer fill-white transition-colors hover:fill-orange-500;
 }
 
 .action-button-prev {
-  @apply absolute -left-8 bottom-1/2 right-0 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
+  @apply absolute -left-8 bottom-[40%] lg:bottom-[50%] right-0 flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
 }
 
 .action-button-next {
-  @apply absolute -right-8 bottom-1/2 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
+  @apply absolute -right-8 bottom-[40%] lg:bottom-[50%] flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
 }
 .actions-buttons-container {
  @apply relative flex justify-center;
@@ -206,7 +209,7 @@ onUnmounted(() => {
 }
 
 .modal-container {
-  width: 700px;
+  @apply w-[400px] lg:w-[700px];
   margin: auto;
   padding: 50px 30px;
   transition: all 0.3s ease;
