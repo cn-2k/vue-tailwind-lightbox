@@ -9,21 +9,32 @@
 <p align=center>A Gallery/Lightbox component styled with TailwindCSS for Vue 3 (Typescript included!).</p>
 <p align=center>Based on <a href="https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6" target="_blank">Frontend Mentor E-commerce product page</a> Lightbox.</p>
 
+## 📺 Demo
+
+https://vue-tailwind-lightbox-demo.vercel.app/
+
 ## 🚀 Installation
 
-Install using your package manager of choice:
+1. Install using your package manager of choice:
 
 ```bash
 npm i vue-tailwind-lightbox
 ```
 
-## 📺 Demo
+2. Add the source files of Nuxt Tailwind Lightbox to the ```tailwind.config.js``` template path:
 
-https://vue-tailwind-lightbox-demo.vercel.app/
+```js
+module.exports = {
+  content: [
+    // other files...
+    './node_modules/vue-tailwind-lightbox/**/*.{js,ts,vue}',
+  ],
+}
+```
 
 ## ⚙️ Usage
 
-Import the component locally or define it globally and include the css file:
+Import the component locally or define it globally:
 
 ```vue
 <template>
@@ -33,7 +44,6 @@ Import the component locally or define it globally and include the css file:
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueTailwindLightbox } from 'vue-tailwind-lightbox'
-import "vue-tailwind-lightbox/dist/style.css"; // Import CSS needed!
 
 import image1 from '@/assets/images/image-product-1.jpg'
 import image2 from '@/assets/images/image-product-2.jpg'
@@ -42,7 +52,6 @@ import image4 from '@/assets/images/image-product-4.jpg'
 
 const imageList = ref([image1, image2, image3, image4])
 </script>
-
 ```
 
 <strong>Note:</strong> don't worry about the thumbnails images, they are automatically compressed to improve and maintain performance! 😉

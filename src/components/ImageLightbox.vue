@@ -1,15 +1,31 @@
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask" @click="handleMaskClick">
-      <div class="modal-container" @click.stop>
-        <div class="modal-body">
-          <div class="actions-buttons-container">
-            <img :src="images[currentImage]" alt="Imagem" class="rounded-xl" />
+    <div
+      v-if="show"
+      class="hidden fixed z-50 top-0 left-0 w-full h-full bg-black/50 sm:flex transition-opacity duration-[0.3s] ease-linear select-none"
+      @click="handleMaskClick"
+    >
+      <div
+        class="modal-container w-[700px] m-auto px-12 py-7 transition-all duration-[0.3s] ease-linear"
+        @click.stop
+      >
+        <div class="my-5">
+          <div class="relative flex justify-center">
+            <img
+              :src="images[currentImage]"
+              alt="Imagem"
+              class="rounded-xl"
+            >
             <div
-              class="close-button"
+              class="absolute -top-14 right-0 cursor-pointer fill-white transition-colors hover:fill-orange-500"
               @click="close"
             >
-              <svg width="35" height="35" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="35"
+                height="35"
+                viewBox="0 0 12 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 <path
                   d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
                   fill-rule="evenodd"
@@ -18,50 +34,70 @@
             </div>
 
             <div
-              class="action-button-prev"
+              class="absolute -left-8 bottom-[40%] lg:bottom-[50%] right-0 flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500"
               @click="prevImage"
             >
-              <div class="action-button-svg">
-                <svg width="20" height="25" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 1 3 9l8 8" stroke-width="3" fill="none" fill-rule="evenodd" />
+              <div class="flex items-center justify-center">
+                <svg
+                  width="20"
+                  height="25"
+                  viewBox="0 0 12 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11 1 3 9l8 8"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
                 </svg>
               </div>
             </div>
 
             <div
-              class="action-button-next"
+              class="absolute -right-8 bottom-[40%] lg:bottom-[50%] flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500"
               @click="nextImage"
             >
-              <div class="action-button-svg">
-                <svg width="20" height="25" viewBox="0 0 12 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="m2 1 8 8-8 8" stroke-width="3" fill="none" fill-rule="evenodd" />
+              <div class="flex items-center justify-center">
+                <svg
+                  width="20"
+                  height="25"
+                  viewBox="0 0 12 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m2 1 8 8-8 8"
+                    stroke-width="3"
+                    fill="none"
+                    fill-rule="evenodd"
+                  />
                 </svg>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="thumb-container">
+        <div class="flex w-full justify-center items-center gap-4">
           <div
             v-if="!loading"
-            class="thumb-subcontainer"
+            class="w-[500px] flex place-content-center gap-6"
             :class="{ 'place-content-between': props.images.length > 3 }"
           >
             <div
               v-for="(image, index) in props.images"
               :key="index"
-              class="thumb-img-container"
-              :class="{ 'border-active': currentImage === index }"
+              class="overflow-hidden rounded-2xl"
+              :class="{ 'border-[3px] border-orange-500': currentImage === index }"
               @click="currentImage = index"
             >
-              <div class="thumb-img">
+              <div class="rounded-xl bg-white">
                 <img
                   :src="compressedImages[index]"
                   alt="Imagem"
-                  class="thumb-img-style"
+                  class="w-[120px] cursor-pointer rounded-xl transition-opacity hover:opacity-30"
                   :class="{ 'opacity-30': currentImage === index }"
                   @click="currentImage = image"
-                />
+                >
               </div>
             </div>
           </div>
@@ -127,7 +163,9 @@ const closeOnEscape = (event: KeyboardEvent) => {
 };
 
 watchEffect(() => {
-  document.addEventListener('keydown', closeOnEscape);
+  if (props.show) {
+    document.addEventListener('keydown', closeOnEscape);
+  }
 });
 
 const handleMaskClick = (event: Event) => {
@@ -141,93 +179,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="postcss" scoped>
-.opacity-30 {
-  opacity: 0.3;
-}
-
-.thumb-img-style{
-  @apply w-[120px] cursor-pointer rounded-xl transition-opacity hover:opacity-30;
-}
-
-.thumb-img {
-  @apply rounded-xl bg-white;
-}
-.border-active {
-  @apply border-[3px] border-orange-500;
-}
-
-.thumb-img-container {
-  @apply overflow-hidden rounded-2xl;
-}
-.place-content-between {
-  place-content: space-between;
-}
-
-.thumb-container {
-  @apply flex w-full justify-center items-center gap-4;
-}
-
-.thumb-subcontainer {
-  @apply w-[500px] flex place-content-center gap-6;
-}
-
-.close-button {
- @apply absolute -top-14 right-0 cursor-pointer fill-white transition-colors hover:fill-orange-500;
-}
-
-.action-button-prev {
-  @apply absolute -left-8 bottom-[40%] lg:bottom-[50%] right-0 flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
-}
-
-.action-button-next {
-  @apply absolute -right-8 bottom-[40%] lg:bottom-[50%] flex h-6 w-1 cursor-pointer items-center justify-center rounded-full bg-white stroke-zinc-800 p-9 transition-colors hover:stroke-orange-500;
-}
-.actions-buttons-container {
- @apply relative flex justify-center;
-}
-
-.action-button-svg {
-  @apply flex items-center justify-center;
-}
-
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
-.modal-mask {
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  transition: opacity 0.3s ease;
-  user-select: none;
-}
-
-.modal-container {
-  @apply w-[400px] lg:w-[700px];
-  margin: auto;
-  padding: 50px 30px;
-  transition: all 0.3s ease;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
-}
-
+<style lang="css" scoped>
 .modal-enter-from {
   opacity: 0;
 }
