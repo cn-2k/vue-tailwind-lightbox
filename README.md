@@ -44,6 +44,7 @@ Import the component locally or define it globally:
 <script setup lang="ts">
 import { ref } from 'vue'
 import { VueTailwindLightbox } from 'vue-tailwind-lightbox'
+import "vue-tailwind-lightbox/dist/style.css"; // Import CSS needed!
 
 import image1 from '@/assets/images/image-product-1.jpg'
 import image2 from '@/assets/images/image-product-2.jpg'
