@@ -66,7 +66,7 @@
         v-for="(image, index) in props.imageList"
         :key="index"
         class="overflow-hidden rounded-2xl"
-        :class="{ 'border-[3px] border-orange-500': currentIndex === index }"
+        :class="{ 'ring ring-orange-500': currentIndex === index }"
       >
         <img
           :src="compressedImages[index]"

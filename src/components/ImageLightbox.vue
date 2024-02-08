@@ -87,7 +87,7 @@
               v-for="(image, index) in props.images"
               :key="index"
               class="overflow-hidden rounded-2xl"
-              :class="{ 'border-[3px] border-orange-500': currentImage === index }"
+              :class="{ 'ring ring-orange-500': currentImage === index }"
               @click="currentImage = index"
             >
               <div class="rounded-xl bg-white">
